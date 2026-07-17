@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             SizedBox(height: 5,),
-            Text('Liter Is : ${liter.toStringAsFixed(5)}',
+            Text('Liter Is : ${liter.toStringAsFixed(5)} liters',
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
