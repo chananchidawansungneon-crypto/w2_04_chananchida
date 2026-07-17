@@ -11,9 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.redAccent),
-      ),
+      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.redAccent)),
       home: const MyHomePage(title: 'Program Calculate'),
     );
   }
@@ -27,17 +25,18 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _gallonController = TextEditingController();
 
   double gallon = 0;
   double liter = 0;
 
-  void calculate(){
+  void calculate() {
     gallon = double.tryParse(_gallonController.text) ?? 0;
 
     setState(() {
-      liter = gallon*3.78541;
+      liter = gallon * 3.78541;
     });
   }
 
@@ -52,16 +51,44 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: .center,
           children: [
-            const Text('Convert gallons to liters.'),
-            
-            Text('Liter Is : ${liter.toStringAsFixed(5)}'),
-            TextField(
-              controller: _gallonController,
-              decoration: InputDecoration(labelText: "Enter Gallon"),
+            const Text(
+              'Convert gallons to liters.',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
+                color: Colors.redAccent,
+              ),
             ),
+            SizedBox(height: 5,),
+            Text('Liter Is : ${liter.toStringAsFixed(5)}',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+                color: Colors.redAccent,
+              ),),
+            SizedBox(height: 20,),
+
+            Center(
+              child: SizedBox(
+                width: 350,
+                child: TextField(
+                  controller: _gallonController,
+                  decoration: InputDecoration(
+                    labelText: 'Enter Gallon',
+                    prefixIcon: Icon(Icons.local_gas_station),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+
+            SizedBox(height: 20,),
             ElevatedButton(
-                onPressed: () => calculate(),
-                child: Text("Calculate")
+              onPressed: () => calculate(),
+              child: Text("Calculate"),
             ),
           ],
         ),
